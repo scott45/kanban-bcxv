@@ -35,7 +35,10 @@ class ToDo(object):
 
     def to_do(self, name, detail):
         self.db.execute('INSERT INTO mydatabase(task_name, task_detail, task_label) VALUES (?,?,?)', (name,
-                                                                                                 detail, 'todo'))
+                                                                                                      detail, 'todo'))
         self.db.commit()
         print("Saved to-do input")
         print("Name: {}\nDescription: {}".format(name, detail))
+
+db = ToDo()
+ToDo.to_do()
