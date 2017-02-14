@@ -31,4 +31,11 @@ class ToDo(object):
         except db.OperationalError:
             pass
 
-# function to perform task_add
+        # function to perform task_add
+
+    def to_do(self, name, detail):
+        self.db.execute('INSERT INTO to_do(task_name, task_detail, task_label) VALUES (?,?,?)', (name,
+                                                                                                 detail, 'todo'))
+        self.db.commit()
+        print("Saved to-do input")
+        print("Name: {}\nDescription: {}".format(name, detail))
