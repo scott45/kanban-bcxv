@@ -8,6 +8,7 @@ import datetime
 
 # class done
 class List(to_do):
+
     # list to-do function that is to handle the listing of all to dos.
     def list_to_do(self):
 
@@ -22,4 +23,16 @@ class List(to_do):
 
         self.db.commit()
 
+    # list to-do function that is to handle the listing of all to dos.
+    def list_doing(self):
 
+        self.cursor.execute("SELECT * FROM todo WHERE task_label='doing'")
+        current = self.cursor.fetchall()
+        headers = ["id", "name", "detail", "label"]
+        table = []
+        for row in current:
+            columns = [row[0], row[1], row[2], row[3]]
+            table.append(columns)
+        print(tabulate(table, headers, tablefmt="fancy_grid"))
+
+        self.db.commit()
