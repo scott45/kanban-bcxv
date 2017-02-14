@@ -6,7 +6,6 @@ import datetime as datetime
 import time as guage
 
 
-
 # class definition
 class ToDo(object):
     # initiation method
@@ -32,7 +31,7 @@ class ToDo(object):
         except db.OperationalError:
             pass
 
-        # function to perform task_add
+            # function to perform task_add
 
     def to_do(self, name, detail):
         self.db.execute('INSERT INTO to_do(task_name, task_detail, task_label) VALUES (?,?,?)', (name,
