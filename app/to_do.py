@@ -1,12 +1,14 @@
 __author__ = 'Scott Businge'
 
+# import statements
 import sqlite3 as db
 import datetime as datetime
 import time as guage
 
 
+# class definition
 class ToDo(object):
-
+    # initiation method
     def __init__(self):
 
         self.datetime = datetime
@@ -17,7 +19,7 @@ class ToDo(object):
         self.cursor = self.db.cursor()
 
         try:
-            self.db.execute('''create table to_do
+            self.db.execute('''CREATE TABLE to_do
                              (task_id INTEGER PRIMARY KEY,
                              task_name TEXT NOT NULL,
                              task_detail TEXT NOT NULL,
@@ -29,5 +31,4 @@ class ToDo(object):
         except db.OperationalError:
             pass
 
-
-
+# function to perform task_add
