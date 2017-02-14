@@ -18,7 +18,7 @@ class Duration(to_do):
             off_obj = datetime.datetime.strptime(off, '%Y-%m-%d %H:%M:%S')
             on_obj = datetime.datetime.strptime(on, '%Y-%m-%d %H:%M:%S')
             duration = off_obj - on_obj
-            difference = 'UPDATE todo SET time_taken ="{}" WHERE task_id = {}'.format(str(duration), row[0])
+            difference = 'UPDATE mydatabase SET time_taken ="{}" WHERE task_id = {}'.format(str(duration), row[0])
 
             self.db.execute(difference)
             self.db.commit()
