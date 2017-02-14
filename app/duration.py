@@ -1,12 +1,12 @@
 __author__ = 'Scott Businge'
 
 # import statements
-from app import to_do
+from app.to_do import ToDo
 import datetime
 
 
 # class done
-class Duration(to_do):
+class Duration(ToDo):
     # duration function that is to handle the time taken on a task.
 
     def duration(self, time_taken):
