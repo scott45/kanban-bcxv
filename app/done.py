@@ -1,13 +1,13 @@
 __author__ = 'Scott Businge'
 
 # import statements
-from app import to_do
+from app.to_do import ToDo
 import datetime
 import time as guage
 
 
 # class done
-class Done(to_do):
+class Done(ToDo):
     # done function for done that is to handle all tasks that are done.3
     def done(self, task_id, task_off):
         if task_off:
