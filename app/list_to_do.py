@@ -23,7 +23,7 @@ class List(to_do):
 
         self.db.commit()
 
-    # list to-do function that is to handle the listing of all to dos.
+    # list to-do function that is to handle the listing of all being done.
     def list_doing(self):
 
         self.cursor.execute("SELECT * FROM todo WHERE task_label='doing'")
@@ -34,5 +34,19 @@ class List(to_do):
             columns = [row[0], row[1], row[2], row[3]]
             table.append(columns)
         print(tabulate(table, headers, tablefmt="fancy_grid"))
+
+        self.db.commit()
+
+    # list to-do function that is to handle the listing of all to dos.
+    def list_done(self):
+
+        self.cursor.execute("SELECT * FROM todo WHERE task_label='done'")
+        accomplished = self.cursor.fetchall()
+        headers = ["id", "name", "detail", "label"]
+        table_2 = []
+        for row in accomplished:
+            rec = [row[0], row[1], row[2], row[3]]
+            table_2.append(rec)
+        print(tabulate(table_2, headers, tablefmt="fancy_grid"))
 
         self.db.commit()
