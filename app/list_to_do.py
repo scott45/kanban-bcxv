@@ -1,13 +1,13 @@
 __author__ = 'Scott Businge'
 
 # import statements
-from app import to_do
+from app.to_do import ToDo
 from tabulate import tabulate
 import datetime
 
 
 # class done
-class List(to_do):
+class List(ToDo):
     # list to-do function that is to handle the listing of all to dos.
     def list_to_do(self):
 
@@ -79,4 +79,4 @@ class List(to_do):
         print(tabulate(table, headers, tablefmt="fancy_grid"))
 
 
-db = to_do()
+db = ToDo()
