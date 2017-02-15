@@ -79,20 +79,20 @@ class MyInteractive(cmd.Cmd):
 
     @docopt_cmd
     def do_doing(self, arg):
-        """Usage: doing <task_id> <task_start>"""
+        """Usage: doing <task_id>"""
         try:
             task_id = int(arg['<task_id>'])
-            cd.doing(task_id, arg['<task_on>'])
+            print(cd.doing(task_id))
         except ValueError:
             print("Id should be an integer")
 
     @docopt_cmd
     def do_done(self, arg):
-        """Usage: done <task_id> <task_off>"""
+        """Usage: done <task_id>"""
 
         try:
             task_id = int(arg['<task_id>'])
-            cd.done(arg['<task_id>'], arg['<task_off>'])
+            cd.done(task_id)
         except ValueError:
             print("Please enter an integer")
 
@@ -106,7 +106,7 @@ class MyInteractive(cmd.Cmd):
     def do_list_to_do(self, arg):
         """Usage: list_to_do """
 
-        cd.list_to_do()
+        cd.list_todo()
 
     @docopt_cmd
     def do_list_doing(self, arg):
