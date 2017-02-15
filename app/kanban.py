@@ -43,25 +43,29 @@ class ToDo(object):
 
     # current function for doing that is to handle all tasks being done now.
 
-    def doing(self, task_id, task_on):
-        if task_on:
-            begin_time = datetime.datetime.fromtimestamp(guage.time()).strftime('%Y-%m-%d %H:%M:%S')
-            move = 'UPDATE mydatabase SET task_label = "doing",task_on ="{}" WHERE task_id = {}'.format(begin_time,
-                                                                                                        task_id)
-            self.db.execute(move)
-            self.db.commit()
-            print("Moved to Doing")
+    def doing(self, task_id):
+
+        begin_time = datetime.datetime.fromtimestamp(guage.time()).strftime('%Y-%m-%d %H:%M:%S')
+        task = 'SELECT task_id from mydatabase WHERE task_id = {}'.format(task_id)
+        self.db.execute(task)
+        if not self.db.cursor():
+            return "Sorry the task doesn't exist"
+
+        move = 'UPDATE mydatabase SET task_label = "doing",task_on ="{}" WHERE task_id = {}'.format(begin_time,
+                                                                                                    task_id)
+        self.db.execute(move)
+        self.db.commit()
+        return "Moved to Doing"
 
             # done function for done that is to handle all tasks that are done.3
 
-    def done(self, task_id, time_off):
-        if time_off:
-            end_time = datetime.datetime.fromtimestamp(guage.time()).strftime('%Y-%m-%d %H:%M:%S')
-            sort = 'UPDATE mydatabase SET task_label = "done",time_off ="{}" WHERE task_id = {}'.format(end_time,
-                                                                                                        task_id)
-            self.db.execute(sort)
-            self.db.commit()
-            print("Task accomplished")
+    def done(self, task_id):
+        end_time = datetime.datetime.fromtimestamp(guage.time()).strftime('%Y-%m-%d %H:%M:%S')
+        sort = 'UPDATE mydatabase SET task_label = "done",time_off ="{}" WHERE task_id = {}'.format(end_time,
+                                                                                                    task_id)
+        self.db.execute(sort)
+        self.db.commit()
+        print("Task accomplished")
 
             # list to-do function that is to handle the listing of all to dos.
 
@@ -81,7 +85,7 @@ class ToDo(object):
             self.db.execute(difference)
             self.db.commit()
 
-    def list_to_do(self):
+    def list_todo(self):
 
         self.cursor.execute("SELECT * FROM mydatabase WHERE task_label='todo'")
         all = self.cursor.fetchall()
@@ -94,17 +98,18 @@ class ToDo(object):
 
         self.db.commit()
 
-    # current function for doing that is to handle all tasks being done now.
-    def doing(self, task_id, task_on):
-        if task_on:
-            begin_time = datetime.datetime.fromtimestamp(guage.time()).strftime('%Y-%m-%d %H:%M:%S')
-            move = 'UPDATE mydatabase SET task_label = "doing",task_on ="{}" WHERE task_id = {}'.format(begin_time,
-                                                                                                        task_id)
-            self.db.execute(move)
-            self.db.commit()
-            print("Moved to Doing")
+    # list done function that is to handle the listing of all doing
+    def list_doing(self):
+        self.cursor.execute("SELECT * FROM mydatabase WHERE task_label='doing'")
+        accomplished = self.cursor.fetchall()
+        headers = ["id", "name", "detail", "label"]
+        table_2 = []
+        for row in accomplished:
+            rec = [row[0], row[1], row[2], row[3]]
+            table_2.append(rec)
+        print(tabulate(table_2, headers, tablefmt="fancy_grid"))
 
-    # list done function that is to handle the listing of all to dos.
+    # list done function that is to handle the listing of all done.
     def list_done(self):
 
         self.cursor.execute("SELECT * FROM mydatabase WHERE task_label='done'")
