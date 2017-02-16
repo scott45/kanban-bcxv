@@ -114,7 +114,6 @@ To close or exit the kanban console application, a user can use the `quit` comma
 'Thank you for using Kanban, Later'
 ```
 Since you are still in a virtualenv, you could deactivate the environment:
-```
 
 # Extra Functionalities (done)
 
