@@ -115,7 +115,7 @@ To close or exit the kanban console application, a user can use the `quit` comma
 ```
 Since you are still in a virtualenv, you could deactivate the environment:
 
-### Extra Functionalities (done)
+## Extra Functionalities (done)
 
 Synchronize the Sqlite database to Firebase
 
