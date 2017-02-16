@@ -24,13 +24,13 @@ class ToDo(object):
                              (task_id INTEGER PRIMARY KEY,
                              task_name TEXT NOT NULL,
                              task_detail TEXT NOT NULL,
-                             task_label TEXT ,
-                             task_on DATETIME,
-                             time_off DATETIME,
-                             time_taken DATETIME)''')
+                             task_label TEXT,
+                             task_on DATETIME NOT NULL,
+                             time_off DATETIME NOT NULL ,
+                             time_taken DATETIME NOT NULL )''')
 
         except sqlite3.OperationalError:
-            pass
+            print("database still initialising the data")
 
             # function to perform task_add
 
@@ -48,8 +48,8 @@ class ToDo(object):
         begin_time = datetime.datetime.fromtimestamp(guage.time()).strftime('%Y-%m-%d %H:%M:%S')
         task = 'SELECT task_id from mydatabase WHERE task_id = {}'.format(task_id)
         self.db.execute(task)
-        if not self.db.cursor():
-            return "Sorry the task doesn't exist"
+        if None:
+            print("Sorry the task doesn't exist")
 
         move = 'UPDATE mydatabase SET task_label = "doing",task_on ="{}" WHERE task_id = {}'.format(begin_time,
                                                                                                     task_id)
@@ -57,7 +57,7 @@ class ToDo(object):
         self.db.commit()
         return "Moved to Doing"
 
-            # done function for done that is to handle all tasks that are done.3
+        # done function for done that is to handle all tasks that are done.3
 
     def done(self, task_id):
         end_time = datetime.datetime.fromtimestamp(guage.time()).strftime('%Y-%m-%d %H:%M:%S')
@@ -67,7 +67,7 @@ class ToDo(object):
         self.db.commit()
         print("Task accomplished")
 
-            # list to-do function that is to handle the listing of all to dos.
+        # list to-do function that is to handle the listing of all to dos.
 
     # duration function that is to handle the time taken on a task.
 
@@ -125,7 +125,7 @@ class ToDo(object):
     def list_all(self):
         self.cursor.execute("SELECT * FROM mydatabase ")
         all_rows = self.cursor.fetchall()
-        headers = ["id", "name", "detail", "label", "time"]
+        headers = ["id", "name", "detail", "label"]
         table = []
         for row in all_rows:
             task_id = row[0]
@@ -133,24 +133,14 @@ class ToDo(object):
             task_detail = row[2]
             task_label = row[3]
 
-            time_taken = "Not started"
-
-            if task_label == 'doing':
-                time_taken = "Started"
-            elif task_label == 'done':
-                off = (row[5])
-                on = (row[4])
-                off_obj = datetime.datetime.strptime(off, '%Y-%m-%d %H:%M:%S')
-                on_obj = datetime.datetime.strptime(on, '%Y-%m-%d %H:%M:%S')
-                time_taken = off_obj - on_obj
-
-            rec = [task_id, task_name, task_detail, task_label, time_taken]
+            rec = [task_id, task_name, task_detail, task_label]
             table.append(rec)
 
         print(tabulate(table, headers, tablefmt="fancy_grid"))
 
 
 db = ToDo()
+# db.list_all()
 # db.to_do(name="oop", detail="inheritance")
 # db.doing(task_on=datetime, task_id=1)
 # db.done(time_off=datetime, task_id=1)

@@ -13,7 +13,7 @@ def app_intro():
     click.secho('!' * 40, fg='yellow')
     click.secho('-' * 40, fg='white')
     init(strip=not sys.stdout.isatty())  # # strip colors if stdout is redirected
-    cprint(figlet_format('kanban board', font='small'), 'green')
+    cprint(figlet_format('kanban board', font='big'), 'white')
     click.secho('-' * 40, fg='white')
     click.secho('!' * 40, fg='yellow')
 
@@ -21,7 +21,7 @@ def app_intro():
 def intro_msg():
     click.secho(
         """
-    """""""""""'Heylo there'"""""""""
+    """""""""""'Add, edit, delete, and keep track of your tasks'"""""""""
         """, bold=True, fg='yellow')
 
 

@@ -4,12 +4,15 @@ __author__ = 'Scott Businge'
 """
 KanBan; to do, doing and done.
 Usage:
-    my_KanBan todo <task_name> <task_desc>
-    my_KanBan doing <task_id> <task_start>
+    my_KanBan todo <task_name>
+    my_KanBan doing <task_id>
+    my_KanBan edit <task_id>
+    my_KanBan delete <task_id>
     my_KanBan list_to_do
     my_KanBan list_doing
     my_KanBan list_done
     my_KanBan list_all
+
 
     my_KanBan (-i | --interactive)
     my_KanBan (-h | --help | --version)
