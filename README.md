@@ -118,8 +118,10 @@ Since you are still in a virtualenv, you could deactivate the environment:
 
 
 # Extra Functionalities (done)
-  * Synchronize the Sqlite database to Firebase
-  * Edit a task
-  * Delete a task
-  * help command
-  * quit command
+```sh
+* Synchronize the Sqlite database to Firebase
+* Edit a task
+* Delete a task
+* help command
+* quit command
+```
