@@ -53,8 +53,8 @@ The help command lists all commands executed by kanban
 (kanban) help
 Documented commands :
 ========================================
-to_do  help  quit  doing  done  list_all  delete
-list_done  list_doing  list_to_do  list_all  edit
+to_do  help  quit  doing  done  list_all  delete 
+list_done  list_doing  list_to_do  list_all  edit  sync
 ```
 
 ### `to_do` command
@@ -81,6 +81,28 @@ To add a task to the done section, use the done command:
 ```sh
 (kanban) done <task_id>
 Task accomplished
+```
+
+### `edit` command
+To edit a task to the done section, use the edit command:
+```sh
+(kanban) edit <task_id><task_name><task_detail>
+Edited and saved task
+```
+
+### `delete` command
+To delete a task to the done section, use the delete command:
+```sh
+(kanban) delete <task_id>
+Deleted <task_name>
+```
+
+### `sync` command
+To sync a task data to the cloud on firebase, use the sync command:
+```sh
+(kanban) sync
+Hold on as your data is being synced
+Sync complete
 ```
 
 ### `list_to_do` command
