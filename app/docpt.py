@@ -6,12 +6,13 @@ KanBan; to do, doing and done.
 Usage:
     my_KanBan todo <task_name>
     my_KanBan doing <task_id>
-    my_KanBan edit <task_id>
+    my_KanBan edit <task_id> <task_name> <task_detail>
     my_KanBan delete <task_id>
     my_KanBan list_to_do
     my_KanBan list_doing
     my_KanBan list_done
     my_KanBan list_all
+    my_KanBan sync
 
 
     my_KanBan (-i | --interactive)
@@ -81,6 +82,24 @@ class MyInteractive(cmd.Cmd):
             return -1
 
     @docopt_cmd
+    def do_edit(self, arg):
+        """Usage: edit <task_id>"""
+        try:
+            task_id = int(arg['<task_id>'])
+            cd.done(task_id)
+        except ValueError:
+            print("Id should be an integer")
+
+    @docopt_cmd
+    def do_delete(self, arg):
+        """Usage: delete <task_id>"""
+        try:
+            task_id = int(arg['<task_id>'])
+            cd.done(task_id)
+        except ValueError:
+            print("Id should be an integer")
+
+    @docopt_cmd
     def do_doing(self, arg):
         """Usage: doing <task_id>"""
         try:
@@ -126,8 +145,42 @@ class MyInteractive(cmd.Cmd):
     @docopt_cmd
     def do_list_all(self, arg):
         """Usage: list_all """
-
         cd.list_all()
+
+    @docopt_cmd
+    def do_edit(self, arg):
+        """Usage: edit <task_id> <task_name> <task_detail>"""
+        try:
+            task_id = int(arg['<task_id>'])
+            cd.edit(task_id, arg['<task_name>'], arg['<task_detail>'])
+        except ValueError:
+            print("Id should be an integer")
+
+    @docopt_cmd
+    def do_delete(self, arg):
+        """Usage: delete <task_id>"""
+        try:
+            task_id = int(arg['<task_id>'])
+            cd.delete(task_id)
+        except ValueError:
+            print("Id should be an integer")
+
+    @docopt_cmd
+    def do_sync(self, arg):
+        """Usage: sync
+        """
+        cd.sync()
+
+    @docopt_cmd
+    def do_export(self, arg):
+        """Usage: export
+        """
+        cd.export()
+
+    def do_import_file(self, arg):
+        """Usage: import
+        """
+        cd.import_file()
 
     def do_quit(self, arg):
         """Quits out of Interactive Mode."""
